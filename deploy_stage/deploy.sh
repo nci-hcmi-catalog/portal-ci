@@ -12,9 +12,9 @@ make
 
 # build production build of ui
 cd ../
-cd install/ui
+cd install
 yarn netlify
 
 # start api
-cd ../api
+cd api
 pm2 startOrRestart pm2.config.js --env $1

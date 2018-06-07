@@ -18,7 +18,7 @@ checkStatus $?
 # build production build of ui
 cd ../
 cd install
-yarn netlify
+$3 $4 $5 $6 yarn netlify
 checkStatus $?
 
 # start api

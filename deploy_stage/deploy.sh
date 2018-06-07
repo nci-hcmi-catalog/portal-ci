@@ -18,7 +18,10 @@ checkStatus $?
 # build production build of ui
 cd ../
 cd install
-$3 $4 $5 $6 yarn netlify
+
+# export REACT env variables
+export $3 $4 $5 $6
+yarn netlify
 checkStatus $?
 
 # start api

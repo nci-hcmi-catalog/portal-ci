@@ -5,6 +5,8 @@ function checkStatus() {
     fi
 }
 
+echo "Running as :" $USER
+echo "Running with Parameters :" $1 $2 $3
 # create logs directory if it doesn't exist yet
 mkdir -p logs
 

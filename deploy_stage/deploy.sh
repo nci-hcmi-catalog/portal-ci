@@ -5,26 +5,35 @@ function checkStatus() {
     fi
 }
 
+# create logs directory if it doesn't exist yet
+mkdir -p logs
+
 # create install directory if it doesn't exist yet
 mkdir -p install
 cd install
 checkStatus $?
-# unzip deployment package
-tar -xvf ../deploy/$2/portal.tar
-checkStatus $?
-#build
-make
-checkStatus $?
-# build production build of ui
-cd ../
-cd install
 
-# export REACT env variables
-export $3 $4 $5 $6
-yarn netlify
+# unzip deployment package
+tar -xvf ../deploy/$2/$3.tar
 checkStatus $?
+
+#build
+cd $3
+yarn
+checkStatus $?
+
+# start cms
+if [ $3 -eq 'cms' ]; then
+   pm2 startOrRestart pm2.config.js --env $1
+fi
 
 # start api
-cd api
-pm2 startOrRestart pm2.config.js --env $1
+if [ $3 -eq 'api' ]; then
+   pm2 startOrRestart pm2.config.js --env $1
+fi
+
+# build production build of ui
+if [ $3 -eq 'ui' ]; then
+   yarn build
+fi
 checkStatus $?

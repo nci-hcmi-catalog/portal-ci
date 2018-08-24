@@ -23,17 +23,17 @@ yarn
 checkStatus $?
 
 # start cms
-if [ $3 -eq 'cms' ]; then
+if [ $3 == 'cms' ]; then
    pm2 startOrRestart pm2.config.js --env $1
 fi
 
 # start api
-if [ $3 -eq 'api' ]; then
+if [ $3 == 'api' ]; then
    pm2 startOrRestart pm2.config.js --env $1
 fi
 
 # build production build of ui
-if [ $3 -eq 'ui' ]; then
+if [ $3 == 'ui' ]; then
    yarn build
 fi
 checkStatus $?

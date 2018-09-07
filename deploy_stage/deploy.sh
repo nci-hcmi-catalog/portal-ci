@@ -26,16 +26,17 @@ checkStatus $?
 
 # start cms
 if [ $3 == 'cms' ]; then
-   pm2 startOrRestart pm2.config.js --env $1
+    (cd variant-migrations; yarn migrate-mongo up)
+    pm2 startOrRestart pm2.config.js --env $1
 fi
 
 # start api
 if [ $3 == 'api' ]; then
-   pm2 startOrRestart pm2.config.js --env $1
+    pm2 startOrRestart pm2.config.js --env $1
 fi
 
 # build production build of ui
 if [ $3 == 'ui' ]; then
-   yarn build
+    yarn build
 fi
 checkStatus $?

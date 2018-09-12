@@ -26,7 +26,7 @@ checkStatus $?
 
 # start cms
 if [ $3 == 'cms' ]; then
-    (cd variant-migrations; yarn migrate-mongo up)
+    (cd variant-migrations; ../node_modules/.bin/migrate-mongo up)
     pm2 startOrRestart pm2.config.js --env $1
 fi
 

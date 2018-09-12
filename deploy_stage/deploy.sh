@@ -26,7 +26,10 @@ checkStatus $?
 
 # start cms
 if [ $3 == 'cms' ]; then
+    echo "Run migrate"
     (cd variant-migrations; ../node_modules/.bin/migrate-mongo up)
+    echo "Migrate completed"
+
     pm2 startOrRestart pm2.config.js --env $1
 fi
 

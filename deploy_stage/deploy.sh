@@ -21,7 +21,7 @@ checkStatus $?
 
 #build
 cd $3
-yarn
+yarn install --non-interactive
 checkStatus $?
 
 # start cms

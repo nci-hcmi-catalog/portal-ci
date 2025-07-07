@@ -21,6 +21,7 @@ checkStatus $?
 
 #build
 cd $3
+echo "Running yarn install with --non-interactive --frozen-lockfile"
 yarn install --non-interactive --frozen-lockfile
 checkStatus $?
 

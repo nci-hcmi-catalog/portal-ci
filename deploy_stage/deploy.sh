@@ -21,7 +21,7 @@ checkStatus $?
 
 #build
 cd $3
-yarn install --non-interactive
+yarn install --non-interactive --frozen-lockfile
 checkStatus $?
 
 # start cms
